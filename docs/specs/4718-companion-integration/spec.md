@@ -6,12 +6,20 @@ This adds documentation and an illustrative fixture; the integration is not impl
 ## Problem and outcome
 
 Issue #4718 reports that adding a companion block to managed REA skill text causes
-canonical-file drift. At inspected commit
-`6b180783ed04ebc87548c8385c80e05725804c47`,
-[setup compares managed bytes](https://github.com/morluto/rea/blob/6b180783ed04ebc87548c8385c80e05725804c47/src/application/SetupSkill.ts#L406)
-and [doctor requires canonical alignment](https://github.com/morluto/rea/blob/6b180783ed04ebc87548c8385c80e05725804c47/src/application/Doctor.ts#L412).
-A [package update](https://github.com/morluto/rea/blob/6b180783ed04ebc87548c8385c80e05725804c47/src/application/Update.ts#L141)
-does not itself apply setup changes.
+canonical-file drift. I rechecked the source on 28 October 2026 at upstream main
+`1e421242b97a533a5c03458ac074d4353ec17bf3`:
+[setup inspects the managed files](https://github.com/morluto/rea/blob/1e421242b97a533a5c03458ac074d4353ec17bf3/src/application/SetupSkill.ts#L481-L510),
+including the [byte comparison](https://github.com/morluto/rea/blob/1e421242b97a533a5c03458ac074d4353ec17bf3/src/application/SetupSkill.ts#L509),
+and [doctor's alignment predicate requires canonical content](https://github.com/morluto/rea/blob/1e421242b97a533a5c03458ac074d4353ec17bf3/src/application/Doctor.ts#L431-L436).
+The [update workflow](https://github.com/morluto/rea/blob/1e421242b97a533a5c03458ac074d4353ec17bf3/src/application/Update.ts#L148-L153)
+does not itself apply setup changes; its
+[post-install path returns a maintenance plan and remediation](https://github.com/morluto/rea/blob/1e421242b97a533a5c03458ac074d4353ec17bf3/src/application/Update.ts#L238-L252).
+
+These are source observations, not a reproduced setup/doctor/update sequence or
+proof of the proposed integration. The earlier pinned inspection was at
+`6b180783ed04ebc87548c8385c80e05725804c47`; its byte comparison is at
+[SetupSkill.ts line 437](https://github.com/morluto/rea/blob/6b180783ed04ebc87548c8385c80e05725804c47/src/application/SetupSkill.ts#L437).
+The previous line 406 link pointed to per-root loop setup, not that comparison.
 
 I propose explicit companion co-loading for relevant tasks while preserving those
 canonical checks. V1 would cover personal client profiles, using existing local
@@ -65,8 +73,9 @@ Integration consent grants no additional tool, network or spending authority.
 One explicit approval may cover an exact package update and its resulting grant
 when the reviewed action includes both. Different assets, content or scope require
 a revised plan. Updating a disabled entry preserves disabled intent unless
-enablement was included; generic setup approval and weekly-check opt-in do not
-supply integration consent.
+enablement was included. Generic REA setup approval supplies no new integration
+consent. Weekly-check opt-in and its cooldown belong to the Companion's own
+installer/updater, not REA; they also supply no integration consent.
 
 Schema versions are distinct from package and host versions. Unknown schemas
 remain intact and unloadable with a warning. V1 needs no speculative migration
@@ -91,8 +100,9 @@ require review. Registration tools do not silently rewrite publisher manifests.
   assessed. Doctor separates canonical identity, intent, checked content, adapter
   prerequisites and actual session delivery. Static files cannot prove delivery.
 - I prefer companion-installer ownership of exact legacy-block removal. Preserve
-  newer surrounding REA bytes, selected paths/client aliases, backups, update
-  opt-in and cooldown; expose changes to pending update decisions. Stage disabled,
+  newer surrounding REA bytes, selected paths/client aliases, backups, and the
+  Companion installer/updater's update opt-in and cooldown; expose changes to
+  pending update decisions. Stage disabled,
   then enable only after canonical/content/binding prerequisites verify. Avoid dual
   routes and automatic re-patching. Refuse customized or ambiguous blocks; migrate
   updater state explicitly without transferring old approval to a new mode.
