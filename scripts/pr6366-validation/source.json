@@ -1,0 +1,268 @@
+{
+  "repository": "ShadowSwaps/rea",
+  "repositoryId": "1424016165",
+  "branch": "validation/pr6366-macos-20261110-01",
+  "baselineCommit": "cd99f62ae20c96203df466c14bf66edf929e2ec8",
+  "baselineTree": "3e7df00a15bdddf6fed7cf7523cd3b2036aed37b",
+  "reviewedUncommittedTree": "f9bfdec9aae8f55a444851c485ffe87c13708930",
+  "patchSha256": "b0f7fbd1b83e62f3b5fc6eae069fe20d7712e780a6f426c7aa3209d6ef8423d1",
+  "prototypePath": "docs/specs/4718-companion-loading-prototype",
+  "baselineHashes": {
+    "prototype.test.mjs": "19a7531652845f6c64a848ef447aa0ab2a30319803b4ca22f8a0723e6b89fddf",
+    "resolver.mjs": "a1e21e03a56ff4c71eb85fe6ff1a5e1e910769a46add42e4f2e40db32967dd09",
+    "migration.mjs": "3fcdcac5696fee0b42debf41e6e492e6ad1a37e7e92c586c2c69c11d5633bed5",
+    "legacy-block.fixture.md": "1d99a273ab57c20d149bff63ab70e9c3811bd5cc0389d5aae59c1caa3b91a120",
+    "README.md": "1c7a1e9ff96150503fc5aca8a58a05f2ff106477686a0ed6a910d30b8ab85365",
+    "LICENSE.fixture": "37394f94875eac512e824b757e9c70d81d1188c92b9dd96f1e2a0d539e89259c"
+  },
+  "correctedHashes": {
+    "prototype.test.mjs": "9147c6e18ff4d6ddaa93854aa21f4bec2ceee3073308bb9cd2d402732ac6933d",
+    "resolver.mjs": "a1e21e03a56ff4c71eb85fe6ff1a5e1e910769a46add42e4f2e40db32967dd09",
+    "migration.mjs": "3fcdcac5696fee0b42debf41e6e492e6ad1a37e7e92c586c2c69c11d5633bed5",
+    "legacy-block.fixture.md": "1d99a273ab57c20d149bff63ab70e9c3811bd5cc0389d5aae59c1caa3b91a120",
+    "README.md": "1c7a1e9ff96150503fc5aca8a58a05f2ff106477686a0ed6a910d30b8ab85365",
+    "LICENSE.fixture": "37394f94875eac512e824b757e9c70d81d1188c92b9dd96f1e2a0d539e89259c"
+  },
+  "baselinePattern": "^manual\\ checked\\ text\\ returns\\ exact\\ selected\\ entry/reference\\ and\\ provenance;\\ host\\ stays\\ inactive$",
+  "focusedPattern": "(?:symlinked\\ host\\ temp\\ base\\ is\\ canonicalized\\ only\\ for\\ owned\\ fixtures|fixture\\ resolves\\ checked\\ text\\ through\\ its\\ canonical\\ owned\\ root|resolver\\ still\\ refuses\\ raw\\ linked\\ registry\\ and\\ package\\ paths|manual\\ checked\\ text\\ returns\\ exact\\ selected\\ entry/reference\\ and\\ provenance;\\ host\\ stays\\ inactive)",
+  "identities": {
+    "baseline": [
+      {
+        "name": "manual checked text returns exact selected entry/reference and provenance; host stays inactive",
+        "nesting": 0
+      }
+    ],
+    "focused": [
+      {
+        "name": "fixture resolves checked text through its canonical owned root",
+        "nesting": 1
+      },
+      {
+        "name": "resolver still refuses raw linked registry and package paths",
+        "nesting": 1
+      },
+      {
+        "name": "symlinked host temp base is canonicalized only for owned fixtures",
+        "nesting": 0
+      },
+      {
+        "name": "manual checked text returns exact selected entry/reference and provenance; host stays inactive",
+        "nesting": 0
+      }
+    ],
+    "full": [
+      {
+        "name": "fixture resolves checked text through its canonical owned root",
+        "nesting": 1
+      },
+      {
+        "name": "resolver still refuses raw linked registry and package paths",
+        "nesting": 1
+      },
+      {
+        "name": "symlinked host temp base is canonicalized only for owned fixtures",
+        "nesting": 0
+      },
+      {
+        "name": "manual checked text returns exact selected entry/reference and provenance; host stays inactive",
+        "nesting": 0
+      },
+      {
+        "name": "irrelevant requests and disabled grants do not read missing package content",
+        "nesting": 0
+      },
+      {
+        "name": "exact profile, client, REA root and approved identity never fall back",
+        "nesting": 0
+      },
+      {
+        "name": "registration defaults disabled, approval binds all bytes, and repeat/disable preserve intent",
+        "nesting": 0
+      },
+      {
+        "name": "content refusal: changed-manifest retains grant and no fallback",
+        "nesting": 0
+      },
+      {
+        "name": "content refusal: changed-file retains grant and no fallback",
+        "nesting": 0
+      },
+      {
+        "name": "content refusal: missing-file retains grant and no fallback",
+        "nesting": 0
+      },
+      {
+        "name": "content refusal: incompatible retains grant and no fallback",
+        "nesting": 0
+      },
+      {
+        "name": "content refusal: schema retains grant and no fallback",
+        "nesting": 0
+      },
+      {
+        "name": "content refusal: extra-field retains grant and no fallback",
+        "nesting": 0
+      },
+      {
+        "name": "content refusal: invalid-utf8 retains grant and no fallback",
+        "nesting": 0
+      },
+      {
+        "name": "content refusal: newline-change retains grant and no fallback",
+        "nesting": 0
+      },
+      {
+        "name": "inventory refuses ../escape",
+        "nesting": 0
+      },
+      {
+        "name": "inventory refuses /absolute",
+        "nesting": 0
+      },
+      {
+        "name": "inventory refuses C:/drive",
+        "nesting": 0
+      },
+      {
+        "name": "inventory refuses x\\backslash",
+        "nesting": 0
+      },
+      {
+        "name": "inventory refuses x:stream",
+        "nesting": 0
+      },
+      {
+        "name": "inventory refuses CON.md",
+        "nesting": 0
+      },
+      {
+        "name": "inventory refuses trailing.",
+        "nesting": 0
+      },
+      {
+        "name": "inventory refuses a//b",
+        "nesting": 0
+      },
+      {
+        "name": "inventory refuses ./self",
+        "nesting": 0
+      },
+      {
+        "name": "inventory refuses caf\u00e9.md",
+        "nesting": 0
+      },
+      {
+        "name": "inventory refuses manifest.json",
+        "nesting": 0
+      },
+      {
+        "name": "case collisions, duplicate registrations, unknown registry and UNC are refused",
+        "nesting": 0
+      },
+      {
+        "name": "strict JSON rejects duplicate escaped keys, depth, UTF-8 and size",
+        "nesting": 0
+      },
+      {
+        "name": "oversized file and total inventory are rejected before instruction delivery",
+        "nesting": 0
+      },
+      {
+        "name": "hard links, junction parents, linked registry and directory files are rejected",
+        "nesting": 0
+      },
+      {
+        "name": "interrupted package update suspends old grant; new bytes cannot reuse old approval",
+        "nesting": 0
+      },
+      {
+        "name": "migration refuses malformed state: null",
+        "nesting": 0
+      },
+      {
+        "name": "migration refuses malformed state: empty array",
+        "nesting": 0
+      },
+      {
+        "name": "migration refuses malformed state: array containing a valid-looking record",
+        "nesting": 0
+      },
+      {
+        "name": "migration refuses malformed state: true",
+        "nesting": 0
+      },
+      {
+        "name": "migration refuses malformed state: false",
+        "nesting": 0
+      },
+      {
+        "name": "migration refuses malformed state: number",
+        "nesting": 0
+      },
+      {
+        "name": "migration refuses malformed state: zero",
+        "nesting": 0
+      },
+      {
+        "name": "migration refuses malformed state: string",
+        "nesting": 0
+      },
+      {
+        "name": "migration refuses malformed state: empty string",
+        "nesting": 0
+      },
+      {
+        "name": "migration refuses malformed state: empty record",
+        "nesting": 0
+      },
+      {
+        "name": "migration refuses malformed state: missing schema",
+        "nesting": 0
+      },
+      {
+        "name": "migration refuses malformed state: unknown schema",
+        "nesting": 0
+      },
+      {
+        "name": "migration refuses malformed state: zero schema",
+        "nesting": 0
+      },
+      {
+        "name": "migration refuses malformed state: null schema",
+        "nesting": 0
+      },
+      {
+        "name": "migration refuses malformed state: string schema",
+        "nesting": 0
+      },
+      {
+        "name": "migration refuses malformed state: missing client",
+        "nesting": 0
+      },
+      {
+        "name": "migration refuses malformed state: unknown client",
+        "nesting": 0
+      },
+      {
+        "name": "migration refuses malformed state: null client",
+        "nesting": 0
+      },
+      {
+        "name": "migration refuses malformed state: numeric client",
+        "nesting": 0
+      },
+      {
+        "name": "migration refuses malformed state: array client",
+        "nesting": 0
+      },
+      {
+        "name": "migration refuses malformed state: object client",
+        "nesting": 0
+      },
+      {
+        "name": "fixture migration preserves surrounding bytes, aliases, all state and disabled intent",
+        "nesting": 0
+      }
+    ]
+  }
+}

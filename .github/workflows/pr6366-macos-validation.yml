@@ -1,0 +1,59 @@
+{
+  "name": "PR6366 one-off macOS fixture validation",
+  "on": {
+    "push": {
+      "branches": [
+        "validation/pr6366-macos-20261110-01"
+      ],
+      "paths": [
+        ".github/workflows/pr6366-macos-validation.yml"
+      ]
+    }
+  },
+  "permissions": {
+    "contents": "read"
+  },
+  "jobs": {
+    "compare": {
+      "if": "${{ github.repository == 'ShadowSwaps/rea' && github.repository_id == '1424016165' && github.event.repository.visibility == 'public' && github.event.repository.private == false && github.event_name == 'push' && github.ref == 'refs/heads/validation/pr6366-macos-20261110-01' && github.event.created == true && github.event.deleted == false && github.event.forced == false && github.run_attempt == 1 }}",
+      "runs-on": "macos-15-intel",
+      "timeout-minutes": 10,
+      "steps": [
+        {
+          "name": "Check out exact original baseline",
+          "uses": "actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "with": {
+            "repository": "ShadowSwaps/rea",
+            "ref": "cd99f62ae20c96203df466c14bf66edf929e2ec8",
+            "path": "baseline",
+            "persist-credentials": false
+          }
+        },
+        {
+          "name": "Check out reviewed activation payload",
+          "uses": "actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "with": {
+            "repository": "ShadowSwaps/rea",
+            "ref": "${{ github.sha }}",
+            "path": "validation",
+            "persist-credentials": false
+          }
+        },
+        {
+          "name": "Use exact reviewer Node version",
+          "uses": "actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+          "with": {
+            "node-version": "24.22.1",
+            "check-latest": false,
+            "package-manager-cache": false
+          }
+        },
+        {
+          "name": "One bounded baseline and corrected comparison",
+          "shell": "bash",
+          "run": "node validation/scripts/pr6366-validation/run.mjs baseline"
+        }
+      ]
+    }
+  }
+}
